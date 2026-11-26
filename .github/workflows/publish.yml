@@ -1,0 +1,27 @@
+name: Publish GeoLite2
+
+on:
+  schedule:
+    # Daily. A run with no new MaxMind build only makes free HEAD requests.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: geolite2
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish the latest GeoLite2 build as a release
+        run: bash geolite2-to-github.sh
+        env:
+          MAXMIND_ACCOUNT_ID: ${{ secrets.MAXMIND_ACCOUNT_ID }}
+          MAXMIND_LICENSE_KEY: ${{ secrets.MAXMIND_LICENSE_KEY }}
+          GITHUB_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          EDITIONS: GeoLite2-Country
+          KEEP_RELEASES: 3

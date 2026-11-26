@@ -1,0 +1,17 @@
+# Copy to ~/.config/geolite2-github.conf and run: chmod 600 ~/.config/geolite2-github.conf
+
+# From https://www.maxmind.com/en/accounts/current/license-key
+MAXMIND_ACCOUNT_ID="123456"
+MAXMIND_LICENSE_KEY="your_license_key"
+
+# Repository that receives the releases (must have at least one commit)
+GITHUB_REPO="your-user/geolite2"
+
+# Optional
+#EDITIONS="GeoLite2-ASN GeoLite2-City GeoLite2-Country"
+#TAG_PREFIX="geolite2-"
+#UPLOAD_TARBALLS=0
+#KEEP_RELEASES=10
+
+# Optional: token instead of 'gh auth login' (fine-grained, Contents: read & write)
+#export GH_TOKEN="github_pat_..."
